@@ -1,6 +1,8 @@
 from git import Repo
 from functools import partial
 
+intify = partial(map, int)
+
 def branch_message(branch_name=None, message=None):
     return "Branch {} is {}".format(branch_name, message)
 
@@ -17,10 +19,8 @@ def main():
     if not tracking_branch:
         print(current_branch_message("not tracked by any remote"))
 
-    ble = "{local}...{tracking}".format(local=branch.name, tracking=tracking_branch.name)
-    sru = git.rev_list(ble, count=True, left_right=True).split("\t")
-    ahead, behind = map(int, sru)
-
+    branches_to_compare = "{local}...{tracking}".format(local=branch.name, tracking=tracking_branch.name)
+    ahead, behind = intify(git.rev_list(branches_to_compare, count=True, left_right=True).split("\t"))
     assert ahead >= 0
     assert behind >= 0
 
