@@ -4,12 +4,6 @@ from functools import partial
 from git import Repo
 from git.exc import InvalidGitRepositoryError
 
-repolist = [
-    "/tmp/test",
-    "/home/allgreed/Work/buxfer_connector",
-    "/home/allgreed/Work/doug",
-    "/tmp/ble",
-]
 
 def main(print_function=print, input_function=sys.stdin.readlines):
     padded_print_function = partial(print_function, "\t")
